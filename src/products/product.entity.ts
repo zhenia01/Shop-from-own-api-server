@@ -18,11 +18,11 @@ export class Product extends BaseEntity {
   @Column()
   image_url!: string;
 
-  @Column('real')
+  @Column('double precision')
   price!: number
   
   @Column({
-    type: "real",
+    type: "double precision",
     nullable: true
   })
   special_price!: number

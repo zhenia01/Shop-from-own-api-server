@@ -1,4 +1,4 @@
-import { Controller, Get, Param, ParseIntPipe, Post, UsePipes, ValidationPipe, Body, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe, Post, UsePipes, ValidationPipe, Body} from '@nestjs/common';
 import { Category } from './category.entity';
 import { CategoriesService } from './categories.service'
 import { CreateCategoryDto } from './dto/create-category.dto';
@@ -19,7 +19,9 @@ export class CategoriesController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  async createCategory(@Body() createCategoryDto: CreateCategoryDto): Promise<Category> {
+  async createCategory(
+    @Body() createCategoryDto: CreateCategoryDto
+  ): Promise<Category> {
     return this.categoriesService.createCategory(createCategoryDto);
   }
 

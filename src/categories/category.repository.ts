@@ -11,7 +11,9 @@ export class CategoryRepository extends Repository<Category> {
     category.name = name;
     category.description = description;
 
-    await category.save();  
+    await category.save(); 
+    
+    // delete category.products;
 
     return category;
   }
