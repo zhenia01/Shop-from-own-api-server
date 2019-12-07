@@ -1,9 +1,13 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Category } from "../categories/category.entity";
 
 @Entity()
 export class Product extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
+
+  @ManyToOne(type => Category, category => category.products, {eager: false})
+  category!: Category;
 
   @Column()
   name!: string;
