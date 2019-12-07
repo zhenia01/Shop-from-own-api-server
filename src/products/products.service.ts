@@ -4,16 +4,31 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './product.entity';
 import { CreateProductDto } from './dto/create-product.dto';
 import { Category } from '../categories/category.entity';
+import { CategoriesService } from '../categories/categories.service';
 
 @Injectable()
 export class ProductsService {
   constructor(
     @InjectRepository(ProductRepository)
-    private productRepository: ProductRepository
+    private productRepository: ProductRepository,
+    private categoriesService: CategoriesService
   ){}
 
   async getProducts() : Promise<Product[]> {
     return this.productRepository.find();
+  }
+
+  async getProductsOfCategoryById(id: number): Promise<Product[]> {
+
+    await this.categoriesService.getCategoryById(id);
+
+    const found = await this.productRepository.find({where: {category: id}});
+
+    if (!found) {
+      throw new NotFoundException(`Tasks of category of ID "${id}" not found`);
+    }
+
+    return found;
   }
 
   async getProductById(id: number) : Promise<Product> {
