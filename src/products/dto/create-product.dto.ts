@@ -1,6 +1,7 @@
-import { IsNotEmpty, IsOptional, IsUrl, IsNumber, IsPositive } from "class-validator";
+import { IsNotEmpty, IsOptional, IsUrl, IsPositive, IsNumberString, IsNumber } from "class-validator";
 
 export class CreateProductDto {
+
   @IsNotEmpty()
   name!: string;
 
