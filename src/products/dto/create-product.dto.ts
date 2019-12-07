@@ -1,11 +1,14 @@
-import { IsNotEmpty, IsOptional, IsUrl, IsPositive, IsNumberString, IsNumber } from "class-validator";
+import { IsNotEmpty, IsOptional, IsUrl, IsPositive, IsNumberString, IsNumber, MinLength, MaxLength } from "class-validator";
 
 export class CreateProductDto {
 
   @IsNotEmpty()
+  @MinLength(3)
+  @MaxLength(20)
   name!: string;
 
   @IsNotEmpty()
+  @MinLength(5)
   description!:string;
 
   @IsNotEmpty()
