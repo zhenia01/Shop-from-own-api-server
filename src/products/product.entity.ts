@@ -6,7 +6,7 @@ export class Product extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @ManyToOne(type => Category, category => category.products, {eager: false})
+  @ManyToOne(type => Category, category => category.products, { eager: false, cascade: true, })
   category!: Category;
 
   @Column()
