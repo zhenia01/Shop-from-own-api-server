@@ -20,7 +20,7 @@ export class ProductRepository extends Repository<Product> {
 
     await product.save();
 
-    // delete product.category;
+    delete product.category;
 
     return product;
   }
