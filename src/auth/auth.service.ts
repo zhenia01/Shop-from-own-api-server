@@ -10,10 +10,6 @@ export class AuthService {
     private adminRepository: AdminRepository
   ) { }
 
-  // async signUp(authCreditsDto: AuthCreditsDto): Promise<void> {
-  //   return this.adminRepository.signUp(authCreditsDto);
-  // }
-
   async signIn(authCreditsdto: AuthCreditsDto) {
     const username = await this.adminRepository.validateUserPassword(authCreditsdto);
     if (!username) {

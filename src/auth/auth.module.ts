@@ -8,5 +8,6 @@ import { AdminRepository } from './admin.repository';
   imports: [TypeOrmModule.forFeature([AdminRepository])],
   controllers: [AuthController],
   providers: [AuthService],
+  exports: [AuthService]
 })
 export class AuthModule {}
