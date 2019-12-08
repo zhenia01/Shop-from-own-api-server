@@ -1,12 +1,12 @@
-import { IsNotEmpty, IsEmail, IsPhoneNumber, MinLength, MaxLength, ValidateNested, ArrayMinSize, IsArray, IsInstance, IsNumber, IsPositive } from "class-validator";
+import { IsNotEmpty, IsEmail, IsPhoneNumber, MinLength, MaxLength, ValidateNested, ArrayMinSize, IsArray, IsInstance, IsNumber, IsPositive, IsObject, IsNumberString } from "class-validator";
 import { Type } from 'class-transformer';
 
 export class ProductMap{
-  @IsNumber()
+  // @IsNumberString()
   id!: number;
 
-  @IsNumber()
-  @IsPositive()
+  // @IsNumberString()
+  // @IsPositive()
   count!: number;
 }
 
@@ -16,14 +16,19 @@ export class CreateOrderDto {
   @MaxLength(20)
   name!: string;
 
+  // @IsPhoneNumber("UA")
   @IsNotEmpty()
-  @IsPhoneNumber("UA")
   phone!: string;
 
   @IsNotEmpty()
   @IsEmail()
   email!: string;
 
+  // @IsObject()
+  // @IsInstance(ProductMap)
+  // @IsNotEmpty()
+  // @ValidateNested({each: true})
+  // @Type(() => ProductMap)
   @IsArray()
   @ValidateNested({each: true})
   @IsNotEmpty()
