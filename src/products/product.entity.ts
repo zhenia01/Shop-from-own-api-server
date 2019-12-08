@@ -1,5 +1,6 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm";
 import { Category } from "../categories/category.entity";
+import { OrderToProduct } from "../orders/order-to-product.entity";
 
 @Entity()
 export class Product extends BaseEntity {
@@ -26,4 +27,7 @@ export class Product extends BaseEntity {
     nullable: true
   })
   special_price!: number
+
+  @OneToMany(type => OrderToProduct, orderToProduct => orderToProduct.order, { eager: false, cascade: true, })
+  orderToProduct!: OrderToProduct[];
 }
