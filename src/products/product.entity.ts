@@ -7,7 +7,7 @@ export class Product extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @ManyToOne(type => Category, category => category.products, { eager: false, cascade: true, })
+  @ManyToOne(type => Category, category => category.products, {cascade: true })
   category!: Category;
 
   @Column()
@@ -28,6 +28,6 @@ export class Product extends BaseEntity {
   })
   special_price!: number
 
-  @OneToMany(type => OrderToProduct, orderToProduct => orderToProduct.order, { eager: false, cascade: true, })
+  @OneToMany(type => OrderToProduct, orderToProduct => orderToProduct.product, {cascade: true })
   orderToProduct!: OrderToProduct[];
 }

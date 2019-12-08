@@ -16,6 +16,6 @@ export class Order extends BaseEntity {
   @Column()
   email!: string;
 
-  @OneToMany(type => OrderToProduct, orderToProduct => orderToProduct.product, {eager: true, cascade: true})
+  @OneToMany(type => OrderToProduct, orderToProduct => orderToProduct.order, {eager: true, cascade: true})
   orderToProduct!: OrderToProduct[];
 }
