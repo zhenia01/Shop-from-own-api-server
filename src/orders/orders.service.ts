@@ -16,6 +16,10 @@ export class OrdersService {
     private orderToProductRepository: OrderToProductRepository
   ) { }
 
+  async getOrders(): Promise<Order[]> {
+    return await this.orderRepository.find();
+  } 
+
   async createOrder(createOrderDto: CreateOrderDto): Promise<Order> {
     const order = await this.orderRepository.createOrder(createOrderDto);
     for (const {id, count} of createOrderDto.products) {
